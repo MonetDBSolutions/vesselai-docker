@@ -9,7 +9,8 @@ RUN apt-get update && \
     TZ="Europe/Amsterdam" \
     apt-get install -y cmake bison libpcre3-dev libssl-dev wget \
                        python3 libgdal-dev gdal-bin libgeos-dev \
-                       libproj-dev unzip libcurl4-gnutls-dev readline-common && \
+                       libproj-dev unzip libcurl4-gnutls-dev \
+                       readline-common libreadline-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # download and extract monetdb
