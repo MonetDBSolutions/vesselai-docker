@@ -1,6 +1,6 @@
 FROM ubuntu:22.04 as build
 
-ARG BRANCH=geo-update
+ARG BRANCH=default
 
 # install monetdb build dependencies
 
@@ -17,7 +17,7 @@ RUN apt-get update && \
 
 WORKDIR /tmp 
 RUN wget --no-check-certificate --content-disposition -O MonetDB.zip \
-    https://github.com/MonetDB/MonetDB/archive/refs/heads/branches/geo-update.zip 
+    https://github.com/MonetDB/MonetDB/archive/refs/heads/branches/default.zip 
 RUN unzip MonetDB.zip
 
 RUN mkdir /tmp/MonetDB-branches-${BRANCH}/build
