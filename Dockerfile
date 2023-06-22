@@ -17,11 +17,11 @@ RUN apt-get update && \
 
 WORKDIR /tmp 
 RUN wget --no-check-certificate --content-disposition -O MonetDB.zip \
-    https://github.com/MonetDB/MonetDB/archive/refs/heads/branches/default.zip 
+    https://www.monetdb.org/hg/MonetDB/archive/default.zip 
 RUN unzip MonetDB.zip
 
-RUN mkdir /tmp/MonetDB-branches-${BRANCH}/build
-WORKDIR /tmp/MonetDB-branches-${BRANCH}/build
+RUN mkdir /tmp/MonetDB-${BRANCH}/build
+WORKDIR /tmp/MonetDB-${BRANCH}/build
 RUN cmake .. \
     -DWITH_CRYPTO=OFF \
     -DINT128=ON \
