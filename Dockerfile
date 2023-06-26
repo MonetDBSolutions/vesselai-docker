@@ -1,6 +1,11 @@
 FROM ubuntu:22.04 as build
 
 ARG BRANCH=default
+ARG CSET=2f570750dba6
+
+# for building always the latest revision of a branch (e.g. default) use
+# BRANCH for BASE otherwise pick up and use a certain changeset (CSET)
+ARG BASE=${CSET}
 
 # install monetdb build dependencies
 
@@ -17,11 +22,11 @@ RUN apt-get update && \
 
 WORKDIR /tmp 
 RUN wget --no-check-certificate --content-disposition -O MonetDB.zip \
-    https://www.monetdb.org/hg/MonetDB/archive/default.zip 
+    https://monetdb.org/hg/MonetDB/archive/${BASE}.zip
 RUN unzip MonetDB.zip
 
-RUN mkdir /tmp/MonetDB-${BRANCH}/build
-WORKDIR /tmp/MonetDB-${BRANCH}/build
+RUN mkdir /tmp/MonetDB-${BASE}/build
+WORKDIR /tmp/MonetDB-${BASE}/build
 RUN cmake .. \
     -DWITH_CRYPTO=OFF \
     -DINT128=ON \
